@@ -115,9 +115,12 @@ You will need to create the following "Environment Variables":
 
 ## Example Use Case - Video Demo
 
-[![Watch the demo](https://img.youtube.com/vi/gK3W_2sHtIs/0.jpg)](https://www.youtube.com/watch?v=gK3W_2sHtIs)
+[[Watch the demo]](https://www.youtube.com/watch?v=gK3W_2sHtIs)
 
-Click the image above to watch a walkthrough of the migration tool in action.
+************ **Screenshot** ************
+---
+
+[![Watch the demo](https://learnuccollab.wordpress.com/wp-content/uploads/2025/05/thumbnail-wp.jpg)](https://www.youtube.com/watch?v=gK3W_2sHtIs)
 
 In the above sample use-case, we are migrating the following UCCX configuration for a typical "Telecom Company" to a WxCC tenant.
 
