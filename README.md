@@ -28,27 +28,28 @@ This tool automates the migration of **Cisco Unified Contact Center Express (UCC
 ### Prerequisites
 
 - Python 3.7+
-- Python libraries - Openpyxl, xmltodict
+- Python libraries - requests, Openpyxl, xmltodict
 - Cisco UCCX with REST API access enabled
 - WxCC tenant with API access and registered integration for OAuth
 - A browser available for handling OAuth redirect
+- Local certificates to interact with Cisco Authorization server over HTTPS. You can use OpenSSL to generate local self signed certificates. This will give you the private key and the certificate which will then need to be used while wrapping the socket request.
 
 ---
 ## Customization
 
 ### Environment Variables
 
-You will need to create "Environment Variables" for the following
+You will need to create the following "Environment Variables":
 
-* CCX_INSTANCE : FQDN of on-prem UCCX instance
-* CCX_TOKEN : Base64 value of the username/password combination of an account that has access to UCCX REST APIs
-* WxCC_INSTANCE : FQDN of WxCC Tenant
-* ORG_ID : WxCC Organization ID
-* WxCC_CLIENT_ID : Client ID that you get when you register your app on `https://developer.webex-cx.com/my-apps`
-* WxCC_CLIENT_SECRET : Client Secret value that you get when you register your app on `https://developer.webex-cx.com/my-apps`
-* WxCC_AUTH_URL : Authorization URL you get after you have registered your app on `https://developer.webex-cx.com/my-apps`
-* WxCC_TOKEN_URL : Set it to `https://webexapis.com/v1/access_token`
-* WxCC_REDIRECT_URI : Set it to the URL where you want Cisco to redirect OAuth response. In the case of this example, it will be `https://localhost:5963`
+* **CCX_INSTANCE** : FQDN of on-prem UCCX instance
+* **CCX_TOKEN** : Base64 value of the username/password combination of an account that has access to UCCX REST APIs
+* **WxCC_INSTANCE** : FQDN of WxCC Tenant
+* **ORG_ID** : WxCC Organization ID
+* **WxCC_CLIENT_ID** : Client ID that you get when you register your app on `https://developer.webex-cx.com/my-apps`
+* **WxCC_CLIENT_SECRET** : Client Secret value that you get when you register your app on `https://developer.webex-cx.com/my-apps`
+* **WxCC_AUTH_URL** : Authorization URL you get after you have registered your app on `https://developer.webex-cx.com/my-apps`
+* **WxCC_TOKEN_URL** : Set it to `https://webexapis.com/v1/access_token`
+* **WxCC_REDIRECT_URI** : Set it to the URL where you want Cisco to redirect OAuth response. In the case of this example, it will be `https://localhost:5963`
 
 ---
 
@@ -59,12 +60,18 @@ You will need to create "Environment Variables" for the following
    git clone https://github.com/simranjit-uc/Cisco-UCCX-WxCC-Migration.git
   ```
 
-> Ensure you whitelist `http://localhost:5963` as a valid **redirect URI** in your Cisco OAuth app settings.
+> Ensure you whitelist `http://localhost:5963` as a valid **redirect URI** in your local system.
 
 **2. Start the Migration**
+* Move to the newly generated directory.
    ```bash
    cd Cisco-UCCX-WxCC-Migration
    ```
+* Run the local web server first. This is where the Cisco Auth server will be redirecting the user to as a part of the OAuth process. This needs to be run first so that the incoming auth-code and state values from the Cisco Auth server can be captured.
+  ```bash
+  python3 Web_Server.py
+  ```
+* Open a new session and run the main file to start the migration process.
    ```bash
    python3 main.py
    ```
@@ -91,6 +98,7 @@ You will need to create "Environment Variables" for the following
 3. `Web_Server.py`:
 
    * Listens on port `5963` for incoming HTTP redirect from Cisco.
+   * The communication between this app and Cisco's Auth server is happening over SSl/TLS. This is where the locally generated certificate and its private key will come in.
    * Captures `auth_code` and `state` values.
 4. `Client_OAuth.py` exchanges `auth_code` for access/refresh tokens and returns them to `WxCC.py`.
 
@@ -129,12 +137,12 @@ The app does the following in less than a minute:
 
 ---
 
-## Contributing
+## Future Contributions
 
-Contributions are welcome! Please:
+Contributions are welcome! In order to do that, please:
 
 1. Fork this repo
-2. Create a feature branch (`feature/your-feature`)
+2. Create a feature branch
 3. Commit your changes
 4. Open a pull request with a clear description
 
@@ -150,7 +158,6 @@ MIT License. See [LICENSE](LICENSE) for more details.
 
 If you want to support or provide any suggestions or simply bounce any technical ideas, please reach out to me at the following:
 
-* 📧 Email: [learnuccollab@gmail.com](mailto:learnuccollab@gmail.com)
 * 🌐 Website: [learnuccollab.com](https://learnuccollab.com)
 * 🔗 LinkedIn: [Simranjit Singh](https://www.linkedin.com/in/simranjit-singh-455751b9)
 * 📺 YouTube: [@learnuccollab](https://www.youtube.com/@learnuccollab)
