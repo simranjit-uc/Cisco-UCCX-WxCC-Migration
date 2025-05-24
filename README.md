@@ -117,10 +117,10 @@ You will need to create the following "Environment Variables":
 
 [[Watch the demo]](https://www.youtube.com/watch?v=gK3W_2sHtIs)
 
-************ **Screenshot** ************
+************ **Sample Screenshot** ************
 ---
 
-[![Watch the demo](https://learnuccollab.wordpress.com/wp-content/uploads/2025/05/thumbnail-wp.jpg)](https://www.youtube.com/watch?v=gK3W_2sHtIs)
+[![Watch the demo](https://learnuccollab.wordpress.com/wp-content/uploads/2025/05/thumbnail-wp-e1748122953676.jpg)](https://www.youtube.com/watch?v=gK3W_2sHtIs)
 
 In the above sample use-case, we are migrating the following UCCX configuration for a typical "Telecom Company" to a WxCC tenant.
 
