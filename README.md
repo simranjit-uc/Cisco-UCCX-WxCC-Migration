@@ -1,6 +1,6 @@
 # Cisco UCCX to Webex Contact Center (WxCC) Configuration Migration Tool
 
-This tool automates the migration of **Cisco Unified Contact Center Express (UCCX)** configurations to **Webex Contact Center (WxCC)**. It extracts UCCX data, transforms it into WxCC compatible format, and pushes the configuration into a WxCC tenant using Cisco's REST APIs.
+This tool automates the migration of **Cisco Unified Contact Center Express (UCCX)** configurations to **Webex Contact Center (WxCC)**. It extracts UCCX data, transforms it into WxCC compatible format, and pushes the configuration into a WxCC tenant using Cisco's REST APIs. The link to the video demo of the app is given at the bottom.
 
 
 ## Project Overview
@@ -32,7 +32,7 @@ This tool automates the migration of **Cisco Unified Contact Center Express (UCC
 - Cisco UCCX with REST API access enabled
 - WxCC tenant with API access and registered integration for OAuth
 - A browser available for handling OAuth redirect
-- Local certificates to interact with Cisco Authorization server over HTTPS. You can use OpenSSL to generate local self signed certificates. This will give you the private key and the certificate which will then need to be used while wrapping the socket request.
+- Local certificates to interact with Cisco Authorization server over HTTPS. You can use OpenSSL to generate local self signed certificates. This will give you the private key and the certificate which will then need to be used while wrapping the socket request. Once you have the private key and the certificate then update their information in the **"keyfile"** and **"certfile"** variables in `Web_Server.py` file.
 
 ---
 ## Customization
@@ -113,7 +113,7 @@ You will need to create the following "Environment Variables":
 
 ---
 
-## Example Use Case
+## Example Use Case - Video Demo
 
 [![Watch the demo](https://img.youtube.com/vi/gK3W_2sHtIs/0.jpg)](https://www.youtube.com/watch?v=gK3W_2sHtIs)
 
@@ -141,10 +141,11 @@ The app does the following in less than a minute:
 
 Contributions are welcome! In order to do that, please:
 
-1. Fork this repo
-2. Create a feature branch
-3. Commit your changes
-4. Open a pull request with a clear description
+1. Fork this repo and clone it to work locally.
+2. Create a new branch.
+3. Add your new feature and test it.
+4. Commit your changes.
+5. Open a pull request with a clear description.
 
 ---
 
